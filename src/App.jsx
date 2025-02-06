@@ -1,12 +1,12 @@
 import {Routes, Route} from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Dashboard from './components/Dashboard';
-import WorkoutLog from './components/WorkoutLog';
-import Progress from './components/Progress';
+import Dashboard from './pages/Dashboard';
+import WorkoutLog from './pages/WorkoutLog';
+import Progress from './pages/Progress';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-900">
       <NavBar />
       <div className="p-4">
         <Routes>
