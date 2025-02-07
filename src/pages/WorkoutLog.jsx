@@ -21,8 +21,21 @@ const WorkoutLog = () => {
     //function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        setWorkouts([...workouts, form]);
+
+        const newWorkout = {
+            ...form,
+            timestamp: new Date().toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,
+            }),
+        };
+        setWorkouts([...workouts, newWorkout]);
         setForm({
+            date: "",
             exercise: "",
             sets: "",
             reps: "",
@@ -74,6 +87,7 @@ const WorkoutLog = () => {
                                         <p>Weight: {workout.weight}lbs</p>
                                     </div>
                                 </div>
+                                <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
                             </li>
                         ))}
                     </ul>
