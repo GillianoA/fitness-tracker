@@ -101,7 +101,7 @@ const WorkoutLog = () => {
     };
 
     return(
-        <div className="container px-4 sm:px-6 lg:px-8 max-w-full">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden mx-auto">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold ">Log your Workout</h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -157,7 +157,7 @@ const WorkoutLog = () => {
                                         </div>
                                     </div>
                                     <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
-                                    <button className="bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2" onClick={() => handleDelete(index)} >Delete</button>
+                                    <button className="bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2 appearance-none focus:outline-none" onClick={() => handleDelete(index)} >Delete</button>
                                 </li>
                             ))
                         )}

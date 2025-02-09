@@ -6,7 +6,7 @@ import Progress from './pages/Progress';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-900 max-w-full">
+    <div className="min-h-screen bg-gray-900 max-w-full overflow-x-hidden">
       <NavBar />
       <div className="p-4 max-w-full">
         <Routes>
