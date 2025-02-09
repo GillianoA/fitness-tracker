@@ -61,7 +61,7 @@ const WorkoutLog = () => {
             currentErrors.reps = "Please enter a valid number of reps";
         }
 
-        if(form.weight === "" || parseInt(form.weight) <= 0) {
+        if(form.weight === "" || parseInt(form.weight) < 0) {
             currentErrors.weight = "Please enter a valid weight";
         }
 
@@ -94,9 +94,15 @@ const WorkoutLog = () => {
         });
     };
 
+    //function to delete a workout
+    const handleDelete = (indexToDelete) => {
+        const updatedWorkouts = workouts.filter((_, index) => index !== indexToDelete);
+        setWorkouts(updatedWorkouts);
+    };
+
     return(
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-">Log your Workout</h2>
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-full">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold ">Log your Workout</h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -128,13 +134,10 @@ const WorkoutLog = () => {
                 <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
                     <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search by exercise name" className="w-full sm:w-1/3 p-2 border rounded border-gray-300 sm:mb-0" />
                     <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="w-full sm:w-1/4 p-2 border rounded border-gray-300">
-                        <option value="desc" className="border rounded bg-gray-900">Sort by newest</option>
-                        <option value="asc" className="border rounded bg-gray-900">Sort by oldest</option>
+                        <option value="desc" className="border rounded bg-gray-900 sm:w-1/4">Sort by newest</option>
+                        <option value="asc" className="border rounded bg-gray-900 sm:w-1/4">Sort by oldest</option>
                     </select>
                 </div>
-                {workouts.length === 0 ? (
-                    <p className="text-gray-500">No workouts logged yet</p>
-                ) : (
                     <ul className="space-y-2">
                         {filteredWorkouts.length === 0 ? (
                             <p className="text-gray-500">No workouts found</p>
@@ -154,11 +157,11 @@ const WorkoutLog = () => {
                                         </div>
                                     </div>
                                     <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
+                                    <button className="bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2" onClick={() => handleDelete(index)} >Delete</button>
                                 </li>
                             ))
                         )}
                     </ul>
-                )}
             </div>
         </div>
     );

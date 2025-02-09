@@ -6,9 +6,9 @@ import Progress from './pages/Progress';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gray-900 max-w-full">
       <NavBar />
-      <div className="p-4">
+      <div className="p-4 max-w-full">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/log" element={<WorkoutLog />} />
