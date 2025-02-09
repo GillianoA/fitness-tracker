@@ -143,21 +143,23 @@ const WorkoutLog = () => {
                             <p className="text-gray-500">No workouts found</p>
                         ) : (
                             filteredWorkouts.map((workout, index) => (
-                                <li key={index} className="border border-gray-300 hover:bg-gray-600 p-2 rounded">
-                                    <h4 className="text-lg font-bold">{workout.exercise}</h4>
-                                    <div className="flex space-x-4">
-                                        <div className="flex-1">
-                                            <p>Sets: {workout.sets}</p>
+                                <li key={index} className=" flex flex-col sm:flex-row justify-between items-center border border-gray-300 hover:bg-gray-600 p-4 rounded">
+                                    <div className="flex-1">
+                                        <h4 className="text-lg font-bold">{workout.exercise}</h4>
+                                        <div className="flex space-x-4 whitespace-nowrap">
+                                            <div className="flex-1">
+                                                <p>Sets: {workout.sets}</p>
+                                            </div>
+                                            <div className="flex-1">
+                                                <p>Reps: {workout.reps}</p>
+                                            </div>
+                                            <div className="flex-1">
+                                                <p>Weight: {workout.weight}lbs</p>
+                                            </div>
                                         </div>
-                                        <div className="flex-1">
-                                            <p>Reps: {workout.reps}</p>
-                                        </div>
-                                        <div className="flex-1">
-                                            <p>Weight: {workout.weight}lbs</p>
-                                        </div>
+                                        <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
                                     </div>
-                                    <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
-                                    <button className="bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2 appearance-none focus:outline-none" onClick={() => handleDelete(index)} >Delete</button>
+                                    <button className="ml-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2 appearance-none focus:outline-none" onClick={() => handleDelete(index)} >Delete</button>
                                 </li>
                             ))
                         )}
