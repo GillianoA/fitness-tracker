@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 
 const WorkoutLog = () => {
@@ -12,6 +12,19 @@ const WorkoutLog = () => {
         reps: "",
         weight: "",
     });
+
+    //Load workouts from local storage
+    useEffect(() => {
+        const workouts = localStorage.getItem("workouts");
+        if(workouts) {
+            setWorkouts(JSON.parse(workouts));
+        }
+    }, []);
+
+    //Save workouts to local storage
+    useEffect(() => {
+        localStorage.setItem("workouts", JSON.stringify(workouts));
+    }, [workouts]);
 
     //function to handle input
     const handleChange = (e) => {
@@ -106,7 +119,7 @@ const WorkoutLog = () => {
                 ) : (
                     <ul className="space-y-2">
                         {workouts.map((workout, index) => (
-                            <li key={index} className="border border-gray-300 p-2 rounded">
+                            <li key={index} className="border border-gray-300 hover:bg-gray-600 p-2 rounded">
                                 <h4 className="text-lg font-bold">{workout.exercise}</h4>
                                 <div className="flex space-x-4">
                                     <div className="flex-1">
