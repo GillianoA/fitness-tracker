@@ -3,6 +3,8 @@ import { Plus } from "lucide-react";
 
 const WorkoutLog = () => {
     //Initial state for the form and workouts
+    const [filter, setFilter] = useState("");
+    const [sortOrder, setSortOrder] = useState("desc");
     const [errors, setErrors] = useState({});
     const [workouts, setWorkouts] = useState([]);
     const [form, setForm] = useState({
@@ -12,6 +14,15 @@ const WorkoutLog = () => {
         reps: "",
         weight: "",
     });
+
+    //Filter and sort workouts
+    const filteredWorkouts = workouts
+        .filter((workout) => workout.exercise.toLowerCase().includes(filter.toLowerCase()))
+        .sort((a, b) => {
+            const dateA = new Date(a.timestamp);
+            const dateB = new Date(b.timestamp);
+            return  sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+        });
 
     //Load workouts from local storage
     useEffect(() => {
@@ -114,27 +125,38 @@ const WorkoutLog = () => {
             </form>
             <div className="mt-4">
                 <h3 className="text-lg font-bold">Workout Log</h3>
+                <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search by exercise name" className="w-full sm:w-1/3 p-2 border rounded border-gray-300 sm:mb-0" />
+                    <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="w-full sm:w-1/4 p-2 border rounded border-gray-300">
+                        <option value="desc" className="border rounded bg-gray-900">Sort by newest</option>
+                        <option value="asc" className="border rounded bg-gray-900">Sort by oldest</option>
+                    </select>
+                </div>
                 {workouts.length === 0 ? (
                     <p className="text-gray-500">No workouts logged yet</p>
                 ) : (
                     <ul className="space-y-2">
-                        {workouts.map((workout, index) => (
-                            <li key={index} className="border border-gray-300 hover:bg-gray-600 p-2 rounded">
-                                <h4 className="text-lg font-bold">{workout.exercise}</h4>
-                                <div className="flex space-x-4">
-                                    <div className="flex-1">
-                                        <p>Sets: {workout.sets}</p>
+                        {filteredWorkouts.length === 0 ? (
+                            <p className="text-gray-500">No workouts found</p>
+                        ) : (
+                            filteredWorkouts.map((workout, index) => (
+                                <li key={index} className="border border-gray-300 hover:bg-gray-600 p-2 rounded">
+                                    <h4 className="text-lg font-bold">{workout.exercise}</h4>
+                                    <div className="flex space-x-4">
+                                        <div className="flex-1">
+                                            <p>Sets: {workout.sets}</p>
+                                        </div>
+                                        <div className="flex-1">
+                                            <p>Reps: {workout.reps}</p>
+                                        </div>
+                                        <div className="flex-1">
+                                            <p>Weight: {workout.weight}lbs</p>
+                                        </div>
                                     </div>
-                                    <div className="flex-1">
-                                        <p>Reps: {workout.reps}</p>
-                                    </div>
-                                    <div className="flex-1">
-                                        <p>Weight: {workout.weight}lbs</p>
-                                    </div>
-                                </div>
-                                <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
-                            </li>
-                        ))}
+                                    <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
+                                </li>
+                            ))
+                        )}
                     </ul>
                 )}
             </div>
