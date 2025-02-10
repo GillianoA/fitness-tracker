@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
+import { motion } from "framer-motion";
 
 const WorkoutLog = ({workouts, setWorkouts}) => {
     //Initial state for the form and workouts
@@ -131,7 +132,10 @@ const WorkoutLog = ({workouts, setWorkouts}) => {
                             <p className="text-gray-500">No workouts found</p>
                         ) : (
                             filteredWorkouts.map((workout, index) => (
-                                <li key={index} className=" flex flex-col sm:flex-row justify-between items-center border border-gray-300 hover:bg-gray-600 p-4 rounded">
+                                <motion.li key={index} className=" flex flex-col sm:flex-row justify-between items-center border border-gray-300 hover:bg-gray-600 p-4 rounded"
+                                    initial={{ opacity: 0, x: -100 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}>
                                     <div className="flex-1">
                                         <h4 className="text-lg font-bold">{workout.exercise}</h4>
                                         <div className="flex space-x-4 whitespace-nowrap">
@@ -147,8 +151,11 @@ const WorkoutLog = ({workouts, setWorkouts}) => {
                                         </div>
                                         <div className="text-sm text-gray-500">Logged on: {workout.timestamp}</div>
                                     </div>
-                                    <button className="ml-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2 appearance-none focus:outline-none" onClick={() => handleDelete(index)} >Delete</button>
-                                </li>
+                                    <motion.button className="ml-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded mt-2 appearance-none focus:outline-none" 
+                                        onClick={() => handleDelete(index)} 
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}>Delete</motion.button>
+                                </motion.li>
                             ))
                         )}
                     </ul>

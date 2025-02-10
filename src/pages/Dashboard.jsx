@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Dumbbell, Flame, BicepsFlexed, Plus, LineChart as LucideLineChart} from "lucide-react";
@@ -32,34 +33,49 @@ const Dashboard = ({workouts}) => {
         <div className="container px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden mx-auto">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">Welcome to Your Fitness Dashboard</h2>
             <div className="flex flex-col md:flex-row gap-4 mb-4">
-                <div className="card bg-gray-700 rounded-lg shadow p-4 flex-1 flex flex-col items-center justify-center">
+                <motion.div className="card bg-gray-700 rounded-lg shadow p-4 flex-1 flex flex-col items-center justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}>
                     <Dumbbell className="w-12 h-12 text-gray-300 " />
                     <h3 className="text-lg font-semibold text-gray-300">Total Weight Lifted</h3>
                     <p className="text-2xl font-bold text-gray-400">{totalWeight} lbs</p>
-                </div>
-                <div className="card bg-gray-700 rounded-lg shadow p-4 flex-1 flex flex-col items-center justify-center">
+                </motion.div>
+                <motion.div className="card bg-gray-700 rounded-lg shadow p-4 flex-1 flex flex-col items-center justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}>
                     <BicepsFlexed className="w-12 h-12 text-gray-300 " />
                     <h3 className="text-lg font-semibold text-gray-300">Total Reps </h3>
                     <p className="text-2xl font-bold text-gray-400">{totalReps} Reps</p>
-                </div>
-                <div className="card bg-gray-700 rounded-lg shadow p-4 flex-1 flex flex-col items-center justify-center">
+                </motion.div>
+                <motion.div className="card bg-gray-700 rounded-lg shadow p-4 flex-1 flex flex-col items-center justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}>
                     <Flame className="w-12 h-12 text-gray-300 " />
                     <h3 className="text-lg font-semibold text-gray-300">Exercises </h3>
                     <p className="text-2xl font-bold text-gray-400">{workoutsToday}/{dailyGoal}</p>
-                </div>
+                </motion.div>
             </div>
             <div className="flex flex-col md:flex-row gap-4 mb-4">
                 <Link to="/log" className="block flex-1">
-                    <div className="group bg-gray-800 rounded-lg shadow p-4 flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors">
+                    <motion.div className="group bg-gray-800 rounded-lg shadow p-4 flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}>
                         <Plus className="w-6 h-6 text-gray-400 group-hover:text-white" />
                         <h3 className="text-lg font-semibold text-gray-400 group-hover:text-white">Log Workout</h3>
-                    </div>
+                    </motion.div>
                 </Link>
                 <Link to="/progress" className="block flex-1">
-                    <div className="group bg-gray-800 rounded-lg shadow p-4 flex items-center justify-center gap-2 hover:bg-blue-600 hover:text-white transition-colors">
+                    <motion.div className="group bg-gray-800 rounded-lg shadow p-4 flex items-center justify-center gap-2 hover:bg-blue-600 hover:text-white transition-colors"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}>
                         <LucideLineChart className="w-6 h-6 text-gray-400 group-hover:text-white" />
                         <h3 className="text-lg font-semibold text-gray-400 group-hover:text-white">View Progress</h3>
-                    </div>
+                    </motion.div>
                 </Link>
             </div>
 
