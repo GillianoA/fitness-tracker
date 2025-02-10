@@ -26,15 +26,15 @@ A responsive, interactive fitness tracker built with React, Vite, and TailwindCS
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/YourUsername/YourRepo.git
-cd YourRepo
+git clone https://github.com/GillianoA/fitness-tracker
+cd fitness-tracker
 npm install
 npm run dev
 ```
 
 ## Deployment
 
-This project is deployed on Vercel / Netlify. For more details on deployment, see the deployment configuration in the project.
+This project is deployed on [Vercel](https://vercel.com/) / [Netlify](https://www.netlify.com/). For more details on deployment, see the deployment configuration in the project.
 
 ## Usage
 
