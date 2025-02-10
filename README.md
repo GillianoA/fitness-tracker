@@ -18,7 +18,7 @@ A responsive, interactive fitness tracker built with React, Vite, and TailwindCS
 - **React** and **Vite** for the frontend
 - **TailwindCSS** for styling
 - **Recharts** for charts and data visualization
-- **Framer Motion** for animations (if applicable)
+- **Framer Motion** for animations
 - **Local Storage** for data persistence
 
 ## Installation
