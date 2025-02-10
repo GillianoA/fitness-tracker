@@ -36,7 +36,7 @@ const Progress = ({workouts}) => {
             return;
         }
 
-        //Get the execercise with the highest weight
+        //Get the exercise with the highest weight
         const maxWeightExercise = filteredWorkouts.reduce((max, workout) =>
             parseFloat(workout.weight) > parseFloat(max.weight) ? workout : max, filteredWorkouts[0]
         );
