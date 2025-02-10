@@ -34,7 +34,7 @@ npm run dev
 
 ## Deployment
 
-This project is deployed on [Vercel](https://vercel.com/) / [Netlify](https://www.netlify.com/). For more details on deployment, see the deployment configuration in the project.
+This project is deployed on [Vercel](https://vercel.com/)/[Netlify](https://www.netlify.com/). For more details on deployment, see the deployment configuration in the project.
 
 ## Usage
 
