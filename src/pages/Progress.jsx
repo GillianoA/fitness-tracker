@@ -11,10 +11,7 @@ const Progress = ({workouts}) => {
         return acc;
     }, {});
 
-    const chartData = Object.entries(aggregateData).map(([date, count]) => ({
-        date,
-        count,
-    }));
+    const chartData = Object.entries(aggregateData).map(([date, count]) => ({date, count})).sort((a, b) => new Date(a.date) - new Date(b.date));
 
     //Exercise search state
     const [exerciseSearch, setExerciseSearch] = useState("");
@@ -26,10 +23,7 @@ const Progress = ({workouts}) => {
     );
 
     // Create Chart Data
-    const exerciseChartData = filteredExerciseWorkouts.map((workout) => ({
-        date: workout.timestamp.split(",")[0],
-        weight: parseFloat(workout.weight),
-    }));
+    const exerciseChartData = filteredExerciseWorkouts.map((workout) => ({date: workout.timestamp.split(",")[0], weight: parseFloat(workout.weight)})).sort((a, b) => new Date(a.date) - new Date(b.date));
 
     //Function to calculate one rep max
     const calculateOneRepMax = (exerciseName) => {

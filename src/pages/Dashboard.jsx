@@ -24,7 +24,9 @@ const Dashboard = ({workouts}) => {
         return acc;
     }, {});
 
-    const chartData = Object.entries(aggregatedData).map(([date, count]) => ({ date, count }));
+    const chartData = Object.entries(aggregatedData)
+        .map(([date, count]) => ({ date, count }))
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
 
     return (
         <div className="container px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden mx-auto">
