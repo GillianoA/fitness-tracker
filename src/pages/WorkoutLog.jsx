@@ -118,7 +118,7 @@ const WorkoutLog = ({workouts, setWorkouts}) => {
                 <button type="submit" className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded flex items-center justify-center gap-2"><Plus className="w-5 h-5" />Add Workout</button>
             </form>
             <div className="mt-4">
-                <h3 className="text-lg font-bold">Workout Log</h3>
+                <h3 className="text-lg font-bold mb-4">Workout Log</h3>
                 <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
                     <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Search by exercise name" className="w-full sm:w-1/3 p-2 border rounded border-gray-300 sm:mb-0" />
                     <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="w-full sm:w-1/4 p-2 border rounded border-gray-300">

@@ -25,7 +25,7 @@ function App() {
       <NavBar />
       <div className="p-4 max-w-full">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard workouts={workouts}/>} />
           <Route path="/log" element={<WorkoutLog workouts={workouts} setWorkouts={setWorkouts}/>} />
           <Route path="/progress" element={<Progress workouts={workouts}/>} />
         </Routes>
