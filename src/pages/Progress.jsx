@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line} from "recharts";
 
 const Progress = ({workouts}) => {
@@ -46,6 +46,14 @@ const Progress = ({workouts}) => {
         setOneRepMax(oneRM);
     }
 
+    useEffect(() => {
+        if (exerciseSearch) {
+            calculateOneRepMax(exerciseSearch);
+        } else {
+            setOneRepMax(null);
+        }
+    }, [exerciseSearch, workouts]);
+
     return (
         <div className="container px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden mx-auto">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">Progress Tracking</h2>
@@ -65,7 +73,11 @@ const Progress = ({workouts}) => {
                 <h3 className="text-lg font-bold mb-4">Exercise Search</h3>
                 <input type="text" 
                     value={exerciseSearch} 
-                    onChange={(e) => setExerciseSearch(e.target.value) && calculateOneRepMax(e.target.value)}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setExerciseSearch(value); 
+                        calculateOneRepMax(e.target.value);
+                    }}
                     placeholder="Enter exercise name (e.g., Push-ups)" 
                     className="w-full p-2 border rounded mb-4"
                 />
