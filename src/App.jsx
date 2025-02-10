@@ -1,9 +1,10 @@
 import {Routes, Route} from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import NavBar from './components/NavBar';
+import { useState, useEffect, Suspense, lazy} from 'react';
 import Dashboard from './pages/Dashboard';
-import WorkoutLog from './pages/WorkoutLog';
-import Progress from './pages/Progress';
+import NavBar from './components/NavBar';
+
+const WorkoutLog = lazy(() => import('./pages/WorkoutLog'));
+const Progress = lazy(() => import('./pages/Progress'));
 
 function App() {
       const [workouts, setWorkouts] = useState([]);
@@ -24,11 +25,13 @@ function App() {
     <div className="min-h-screen bg-gray-900 max-w-full overflow-x-hidden">
       <NavBar />
       <div className="p-4 max-w-full">
-        <Routes>
-          <Route path="/" element={<Dashboard workouts={workouts}/>} />
-          <Route path="/log" element={<WorkoutLog workouts={workouts} setWorkouts={setWorkouts}/>} />
-          <Route path="/progress" element={<Progress workouts={workouts}/>} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Dashboard workouts={workouts}/>} />
+            <Route path="/log" element={<WorkoutLog workouts={workouts} setWorkouts={setWorkouts}/>} />
+            <Route path="/progress" element={<Progress workouts={workouts}/>} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );
