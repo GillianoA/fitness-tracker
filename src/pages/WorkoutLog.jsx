@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 
-const WorkoutLog = () => {
+const WorkoutLog = ({workouts, setWorkouts}) => {
     //Initial state for the form and workouts
     const [filter, setFilter] = useState("");
     const [sortOrder, setSortOrder] = useState("desc");
     const [errors, setErrors] = useState({});
-    const [workouts, setWorkouts] = useState([]);
     const [form, setForm] = useState({
         date: "",
         exercise: "",
@@ -24,18 +23,7 @@ const WorkoutLog = () => {
             return  sortOrder === "asc" ? dateA - dateB : dateB - dateA;
         });
 
-    //Load workouts from local storage
-    useEffect(() => {
-        const workouts = localStorage.getItem("workouts");
-        if(workouts) {
-            setWorkouts(JSON.parse(workouts));
-        }
-    }, []);
 
-    //Save workouts to local storage
-    useEffect(() => {
-        localStorage.setItem("workouts", JSON.stringify(workouts));
-    }, [workouts]);
 
     //function to handle input
     const handleChange = (e) => {
@@ -102,7 +90,7 @@ const WorkoutLog = () => {
 
     return(
         <div className="container px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden mx-auto">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold ">Log your Workout</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">Log your Workout</h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
