@@ -1,4 +1,3 @@
-import { X } from "lucide-react";
 import React, { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line} from "recharts";
 
